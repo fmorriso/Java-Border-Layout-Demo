@@ -34,7 +34,7 @@ public class BorderLayoutDemo extends JFrame
 
         // Geeks button goes on bottom
         JButton geeksButton = new JButton("Geeks");
-        welcomeButton.addActionListener(e -> geeksClicked(e));
+        geeksButton.addActionListener(e -> geeksClicked(e));
         pa.add(geeksButton, BorderLayout.SOUTH);
 
         // add a new JButton with name "Layout" and it is
