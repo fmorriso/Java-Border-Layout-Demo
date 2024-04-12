@@ -3,7 +3,6 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 // class extends JFrame
 public class BorderLayoutDemo extends JFrame
@@ -71,7 +70,34 @@ public class BorderLayoutDemo extends JFrame
 
     private void geeksClicked(ActionEvent e)
     {
-        OutputUtils.displayMessage("Geeks are cool!", "Geeks button Clicked");
+        if(e.getSource() instanceof JButton)
+        {
+            JButton btn = (JButton) e.getSource();
+            changeColor(btn);
+        }
+    }
+
+    private void changeColor(JButton btn)
+    {
+        String[] colorChoices = {"red", "green", "blue"};
+        String choice = InputUtils.getSingleChoice("Choose Color", "Which color?", colorChoices);
+        switch (choice.toLowerCase()) {
+            case "red":
+                btn.setBackground(Color.RED);
+                btn.setForeground(Color.WHITE);
+                break;
+            case "green":
+                btn.setBackground(Color.GREEN);
+                btn.setForeground(Color.YELLOW);
+                break;
+            case "blue":
+                btn.setBackground(Color.BLUE);
+                btn.setForeground(Color.PINK);
+                break;
+
+            default:
+                throw new IllegalStateException("Unexpected value: " + choice.toLowerCase());
+        }
     }
 
     private void sayWelcome()
