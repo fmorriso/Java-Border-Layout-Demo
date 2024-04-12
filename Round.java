@@ -4,6 +4,7 @@ public class Round
 {
     private int totalCards;
     private int maxTimesUsed;
+    private int numRevealed;
 
     private ArrayList<Card> selections;
     private ArrayList<Card> uniqueCards;
@@ -15,10 +16,11 @@ public class Round
     {
         this.totalCards = totalCards;
         this.maxTimesUsed = maxTimesUsed;
+        this.numRevealed = 0;
 
         selections = new ArrayList<Card>(this.totalCards);
-
         uniqueCards = new ArrayList<Card>();
+
         ArrayList<String> uniqueCardNames = CardChooser.getUniqueCardNames();
         for(String text: uniqueCardNames)
             uniqueCards.add(new Card(text));
@@ -29,6 +31,7 @@ public class Round
 
     public void startNewRound()
     {
+        this.numRevealed = 0;
         selections.clear();
         Card card = null;
         for (int i = 0; i < totalCards; ) {
@@ -61,12 +64,12 @@ public class Round
                 }
 
             }
-            System.out.format("DEBUG: Finished creating selection %d%n", i);
+            //System.out.format("DEBUG: Finished creating selection %d%n", i);
             //displaySelections();
             i++;
         }
         //System.out.println(selections);
-        //displaySelections();
+        displaySelections();
         //displayUniqueCards();
 
     }
@@ -113,4 +116,25 @@ public class Round
     }
 
 
+    public void incrementRevealedCount()
+    {
+        this.numRevealed++;
+    }
+
+    public int getNumCardsRevealed()
+    {
+        return this.numRevealed;
+    }
+
+    public void disableUnrevealedButtons(ArrayList<CardButton> buttons)
+    {
+        for (int i = 0; i < buttons.size(); i++)
+        {
+            CardButton button = buttons.get(i);
+            if(!button.getRevealed())
+            {
+                button.setEnabled(false);
+            }
+        }
+    }
 }

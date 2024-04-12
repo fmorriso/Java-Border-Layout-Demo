@@ -24,4 +24,5 @@ public class Card
     {
         return String.format("Card{text=%s, timesUsed=%d}", this.text, this.timesUsed);
     }
+
 }

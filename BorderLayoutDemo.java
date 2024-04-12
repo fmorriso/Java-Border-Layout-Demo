@@ -95,22 +95,31 @@ public class BorderLayoutDemo extends JFrame
             // disable all match buttons until start new round has happened
             b.setEnabled(false);
             cards.add(b);
-            b.addActionListener(e -> cardClicked(e));
+            b.addActionListener(e -> cardButtonClicked(e));
             pnl.add(b);
         }
 
         return pnl;
     }
 
-    private void cardClicked(ActionEvent e)
+    private void cardButtonClicked(ActionEvent e)
     {
         if (e.getSource() instanceof CardButton)
         {
             CardButton b = (CardButton) e.getSource();
             //String msg = String.format("Card button %s was clicked", b.getText());
             //OutputUtils.displayMessage(msg, title);
-            String text = controller.revealButtonText(b);
+            String text = controller.getAssociatedText(b);
             b.setText(text);
+            b.setRevealed(true);
+
+            controller.incrementNumberOfCardsRevealed();
+            if(controller.getCurrentCardsReveals() >= controller.getMaxCardsToReveal()  )
+            {
+                controller.disableUnrevealedButtons(this.cards);
+            }
+
+            b.setEnabled(false); // each button can only reveal itself once per round
         }
     }
 

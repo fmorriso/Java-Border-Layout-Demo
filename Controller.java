@@ -4,6 +4,7 @@ public class Controller
 {
     private static final int MAX_CARDS = 16;
     private static final int MAX_TIMES_REUSE = 2;
+    private static final int MAX_CARDS_TO_REVEAL = 2;
 
     private Round round;
 
@@ -27,10 +28,17 @@ public class Controller
         return this.round.getSelections();
     }
 
-    public String revealButtonText(CardButton b)
+    public String getAssociatedText(CardButton b)
     {
-        int idx = b.getIndex();;
-        return this.getCurrentCards().get(idx).getText();
+        int idx = b.getIndex();
+        Card c = this.getCurrentCards().get(idx);
+        return c.getText();
+    }
+
+    public void enableButton(CardButton b)
+    {
+        b.setEnabled(true);
+        Card c = this.getCurrentCards().get(b.getIndex());
     }
 
     public void enableMatchButtons(ArrayList<CardButton> buttons)
@@ -39,5 +47,25 @@ public class Controller
         {
             button.setEnabled(true);
         }
+    }
+
+    public static int getMaxCardsToReveal()
+    {
+        return MAX_CARDS_TO_REVEAL;
+    }
+
+    public void incrementNumberOfCardsRevealed()
+    {
+        this.round.incrementRevealedCount();
+    }
+
+    public int getCurrentCardsReveals()
+    {
+        return this.round.getNumCardsRevealed();
+    }
+
+    public void disableUnrevealedButtons(ArrayList<CardButton> buttons)
+    {
+        this.round.disableUnrevealedButtons(buttons);
     }
 }
