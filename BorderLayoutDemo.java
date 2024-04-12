@@ -50,11 +50,14 @@ public class BorderLayoutDemo extends JFrame
 
         // add a new JButton with name "Border" and it is
         // lie right of the container
-        pa.add(new JButton("Border"), BorderLayout.WEST);
+        JButton startRoundButton = new JButton("Start Round");
+        startRoundButton.addActionListener(e -> startRoundButtonClicked(e));
+        pa.add(startRoundButton, BorderLayout.WEST);
 
         // put match buttons in the center
         JPanel centerPanel = createMatchButtons(pa);
         pa.add(centerPanel, BorderLayout.CENTER);
+        
 
         // add the pa object which refer to the Jpanel
         add(pa);
@@ -68,6 +71,12 @@ public class BorderLayoutDemo extends JFrame
 
         // Function to set visible status of JFrame.
         setVisible(true);
+    }
+
+    private void startRoundButtonClicked(ActionEvent e)
+    {
+        Round round = new Round(MAX_CARDS, 2);
+        round.startNewRound();
     }
 
     private JPanel createMatchButtons(JPanel pa)
@@ -91,11 +100,12 @@ public class BorderLayoutDemo extends JFrame
 
     private void cardClicked(ActionEvent e)
     {
-        if (e.getSource() instanceof JButton) {
+        if (e.getSource() instanceof JButton)
+        {
             JButton b = (JButton) e.getSource();
             String title = CardChooser.getRandomCard();
             b.setText(title);
-            String msg = String.format("Card button %s was clicked", b.getText());
+            //String msg = String.format("Card button %s was clicked", b.getText());
             //OutputUtils.displayMessage(msg, title);
         }
     }

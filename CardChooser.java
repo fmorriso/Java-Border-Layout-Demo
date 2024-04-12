@@ -15,4 +15,9 @@ public class CardChooser
         int n = (int)(Math.random() * RANGE) + MIN;
         return cards.get(n);
     }
+
+    public static ArrayList<String> getUniqueCardNames()
+    {
+        return cards;
+    }
 }
