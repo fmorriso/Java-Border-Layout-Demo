@@ -104,10 +104,9 @@ public class BorderLayoutDemo extends JFrame
         if (e.getSource() instanceof JButton)
         {
             JButton b = (JButton) e.getSource();
-            //String title = CardChooser.getRandomCard();
-            //b.setText(title);
             String msg = String.format("Card button %s was clicked", b.getText());
             OutputUtils.displayMessage(msg, title);
+
         }
     }
 
@@ -153,14 +152,4 @@ public class BorderLayoutDemo extends JFrame
     }
 }
 
-/*class MainFrame {
-
-    // Driver code
-    public static void main(String[] args)
-    {
-
-        // calling the constructor
-        new BoderLayoutDemo();
-    }
-}*/
 
