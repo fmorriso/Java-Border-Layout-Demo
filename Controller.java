@@ -12,7 +12,6 @@ public class Controller
         this.round = new Round(MAX_CARDS , MAX_TIMES_REUSE);
     }
 
-
     public void startNewRound()
     {
         this.round.startNewRound();
@@ -28,7 +27,7 @@ public class Controller
         return this.round.getSelections();
     }
 
-    public String getButtonSelection(CardButton b)
+    public String revealButtonText(CardButton b)
     {
         int idx = b.getIndex();;
         return this.getCurrentCards().get(idx).getText();

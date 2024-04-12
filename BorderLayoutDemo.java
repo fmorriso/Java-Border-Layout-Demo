@@ -107,7 +107,7 @@ public class BorderLayoutDemo extends JFrame
             CardButton b = (CardButton) e.getSource();
             //String msg = String.format("Card button %s was clicked", b.getText());
             //OutputUtils.displayMessage(msg, title);
-            String text = controller.getButtonSelection(b);
+            String text = controller.revealButtonText(b);
             b.setText(text);
         }
     }
