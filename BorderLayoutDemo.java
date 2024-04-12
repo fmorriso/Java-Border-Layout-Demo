@@ -2,6 +2,7 @@
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 // class extends JFrame
 public class BorderLayoutDemo extends JFrame
@@ -25,12 +26,13 @@ public class BorderLayoutDemo extends JFrame
         // set the layout
         pa.setLayout(new BorderLayout());
 
-        // add a new JButton with name "wel" and it is
-        // lie top of the container
-        pa.add(new JButton("WelCome"), BorderLayout.NORTH);
+        // add a new JButton with name "welcome" to the top (North) part of the border
+        JButton welcomeButton = new JButton("Welcome");
+        welcomeButton.addActionListener(e -> sayWelcome());
+        pa.add(welcomeButton, BorderLayout.NORTH);
 
-        // add a new JButton with name "come" and it is
-        // lie button of the container
+
+        // Geeks button goes on bottom
         pa.add(new JButton("Geeks"), BorderLayout.SOUTH);
 
         // add a new JButton with name "Layout" and it is
@@ -57,6 +59,11 @@ public class BorderLayoutDemo extends JFrame
 
         // Function to set visible status of JFrame.
         setVisible(true);
+    }
+
+    private void sayWelcome()
+    {
+        OutputUtils.displayMessage("Welcome!", "Welcome button Clicked");
     }
 }
 

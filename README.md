@@ -1,7 +1,8 @@
 # java-border-layout-demo
 
-
-
+## References
+* [Java AWT BorderLayout Class Demo](https://www.geeksforgeeks.org/java-awt-borderlayout-class/)
+* [Action Listeners using lambdas](https://www.codejava.net/java-core/the-java-language/java-8-lambda-listener-example)
 ## Getting started
 
 To make it easy for you to get started with GitLab, here's a list of recommended next steps.
