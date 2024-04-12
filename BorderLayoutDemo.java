@@ -3,17 +3,24 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 
 // class extends JFrame
 public class BorderLayoutDemo extends JFrame
 {
+    private static final int MAX_CARDS = 16;
+
     private Dimension scaledSize;
     private String title;
+
+    private ArrayList<JButton> cards;
 
     public BorderLayoutDemo(Dimension scaledSize, String title)
     {
         this.scaledSize = scaledSize;
         this.title = title;
+
+        cards = new ArrayList<JButton>();
 
         this.setTitle(title);
         this.setSize(scaledSize);
@@ -24,7 +31,7 @@ public class BorderLayoutDemo extends JFrame
 
 
         // set the layout
-        pa.setLayout(new BorderLayout());
+        pa.setLayout(new BorderLayout(10, 10));
 
         // add a new JButton with name "welcome" to the top (North) part of the border
         JButton welcomeButton = new JButton("Welcome");
@@ -45,9 +52,9 @@ public class BorderLayoutDemo extends JFrame
         // lie right of the container
         pa.add(new JButton("Border"), BorderLayout.WEST);
 
-        // add a new JButton with name "hello everybody" and it is
-        // lie center of the container
-        pa.add(new JButton("GeeksforGeeks"), BorderLayout.CENTER);
+        // put match buttons in the center
+        JPanel centerPanel = createMatchButtons(pa);
+        pa.add(centerPanel, BorderLayout.CENTER);
 
         // add the pa object which refer to the Jpanel
         add(pa);
@@ -63,6 +70,29 @@ public class BorderLayoutDemo extends JFrame
         setVisible(true);
     }
 
+    private JPanel createMatchButtons(JPanel pa)
+    {
+        JPanel pnl = new JPanel();
+
+        GridLayout layout = new GridLayout(MAX_CARDS/4, MAX_CARDS/ 4);
+        layout.setVgap(10);
+        layout.setHgap(10);
+
+        pnl.setLayout(layout);
+        for (int i = 0; i < MAX_CARDS; i++) {
+            JButton b = new JButton("Card " + i);
+            cards.add(b);
+            b.addActionListener(e -> cardClicked(e));
+            pnl.add(b);
+        }
+
+        return pnl;
+    }
+
+    private void cardClicked(ActionEvent e)
+    {
+    }
+
     private void layoutButtonClicked(ActionEvent e)
     {
         OutputUtils.displayMessage("Layout button", "Layout button Clicked");
@@ -70,8 +100,7 @@ public class BorderLayoutDemo extends JFrame
 
     private void geeksClicked(ActionEvent e)
     {
-        if(e.getSource() instanceof JButton)
-        {
+        if (e.getSource() instanceof JButton) {
             JButton btn = (JButton) e.getSource();
             changeColor(btn);
         }
