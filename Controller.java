@@ -32,4 +32,12 @@ public class Controller
         int idx = b.getIndex();;
         return this.getCurrentCards().get(idx).getText();
     }
+
+    public void enableMatchButtons(ArrayList<CardButton> buttons)
+    {
+        for(CardButton button : buttons)
+        {
+            button.setEnabled(true);
+        }
+    }
 }

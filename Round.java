@@ -51,7 +51,6 @@ public class Round
                     continueSearching = false;
                 } else {
                     // already know about this card, so just make sure we haven't used it too many times
-
                     if (uniqueCards.get(idxUnique).getTimesUsed() < maxTimesUsed)
                     {
                         uniqueCards.get(idxUnique).incrementUsage();

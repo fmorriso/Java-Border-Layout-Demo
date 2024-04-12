@@ -12,7 +12,7 @@ public class BorderLayoutDemo extends JFrame
     private String title;
     private Controller controller;
 
-    private ArrayList<JButton> cards;
+    private ArrayList<CardButton> cards;
 
     public BorderLayoutDemo(Dimension scaledSize, String title, Controller controller)
     {
@@ -20,7 +20,7 @@ public class BorderLayoutDemo extends JFrame
         this.title = title;
         this.controller = controller;
 
-        cards = new ArrayList<JButton>();
+        cards = new ArrayList<CardButton>();
 
         this.setTitle(title);
         this.setSize(scaledSize);
@@ -76,6 +76,7 @@ public class BorderLayoutDemo extends JFrame
     private void startRoundButtonClicked(ActionEvent e)
     {
         this.controller.startNewRound();
+        this.controller.enableMatchButtons(this.cards);
     }
 
     private JPanel createMatchButtons(JPanel pa)
@@ -90,8 +91,9 @@ public class BorderLayoutDemo extends JFrame
 
         for (int i = 0; i < controller.getMaxCards(); i++)
         {
-            //JButton b = new JButton("");
             CardButton b = new CardButton("", new Card(""), i);
+            // disable all match buttons until start new round has happened
+            b.setEnabled(false);
             cards.add(b);
             b.addActionListener(e -> cardClicked(e));
             pnl.add(b);
