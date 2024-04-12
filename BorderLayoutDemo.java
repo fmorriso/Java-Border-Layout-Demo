@@ -91,6 +91,13 @@ public class BorderLayoutDemo extends JFrame
 
     private void cardClicked(ActionEvent e)
     {
+        if(e.getSource() instanceof JButton)
+        {
+            JButton b = (JButton)e.getSource();
+            String title = String.format("Card button %s", b.getText());
+            String msg = String.format("Card button %s was clicked", b.getText());;
+            OutputUtils.displayMessage(msg, title);
+        }
     }
 
     private void layoutButtonClicked(ActionEvent e)
