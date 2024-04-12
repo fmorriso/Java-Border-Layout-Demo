@@ -9,7 +9,8 @@ public class Main
         Dimension scaledSize = SwingScreenUtilities.getScaledSize(.6, 10);
         // Schedule a job for the event-dispatching thread:
         // creating and showing this application's GUI.
-        GUI gui = new GUI(scaledSize, title);
+        Controller controller = new Controller();
+        GUI gui = new GUI(scaledSize, title, controller);
         javax.swing.SwingUtilities.invokeLater(gui);
     }
 

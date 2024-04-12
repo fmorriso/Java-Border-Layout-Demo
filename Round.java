@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Round
 {
@@ -26,6 +25,7 @@ public class Round
 
     }
 
+    public ArrayList<Card> getSelections() { return this.selections; }
 
     public void startNewRound()
     {
@@ -42,7 +42,7 @@ public class Round
             {
                 // grab a random card
                 text = CardChooser.getRandomCard();
-                int idx = lookForExisting(text);
+                int idx = lookForExistingSelection(text);
                 int idxUnique = findUniqueCard(text);
                 if (idx == -1) {
                     card = new Card(text);
@@ -103,7 +103,7 @@ public class Round
         return idx;
     }
 
-    private int lookForExisting(String text)
+    private int lookForExistingSelection(String text)
     {
         for (int i = 0; i < selections.size(); i++) {
             Card card = selections.get(i);

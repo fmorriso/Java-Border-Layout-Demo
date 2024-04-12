@@ -8,17 +8,17 @@ import java.util.ArrayList;
 // class extends JFrame
 public class BorderLayoutDemo extends JFrame
 {
-    private static final int MAX_CARDS = 16;
-
     private Dimension scaledSize;
     private String title;
+    private Controller controller;
 
     private ArrayList<JButton> cards;
 
-    public BorderLayoutDemo(Dimension scaledSize, String title)
+    public BorderLayoutDemo(Dimension scaledSize, String title, Controller controller)
     {
         this.scaledSize = scaledSize;
         this.title = title;
+        this.controller = controller;
 
         cards = new ArrayList<JButton>();
 
@@ -75,20 +75,21 @@ public class BorderLayoutDemo extends JFrame
 
     private void startRoundButtonClicked(ActionEvent e)
     {
-        Round round = new Round(MAX_CARDS, 2);
-        round.startNewRound();
+        this.controller.startNewRound();
     }
 
     private JPanel createMatchButtons(JPanel pa)
     {
         JPanel pnl = new JPanel();
 
-        GridLayout layout = new GridLayout(MAX_CARDS / 4, MAX_CARDS / 4);
+        GridLayout layout = new GridLayout(0, 4);
         layout.setVgap(10);
         layout.setHgap(10);
 
         pnl.setLayout(layout);
-        for (int i = 0; i < MAX_CARDS; i++) {
+
+        for (int i = 0; i < controller.getMaxCards(); i++)
+        {
             JButton b = new JButton("");
             cards.add(b);
             b.addActionListener(e -> cardClicked(e));
@@ -103,10 +104,10 @@ public class BorderLayoutDemo extends JFrame
         if (e.getSource() instanceof JButton)
         {
             JButton b = (JButton) e.getSource();
-            String title = CardChooser.getRandomCard();
-            b.setText(title);
-            //String msg = String.format("Card button %s was clicked", b.getText());
-            //OutputUtils.displayMessage(msg, title);
+            //String title = CardChooser.getRandomCard();
+            //b.setText(title);
+            String msg = String.format("Card button %s was clicked", b.getText());
+            OutputUtils.displayMessage(msg, title);
         }
     }
 
