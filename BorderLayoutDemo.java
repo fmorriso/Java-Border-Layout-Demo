@@ -37,9 +37,10 @@ public class BorderLayoutDemo extends JFrame
         geeksButton.addActionListener(e -> geeksClicked(e));
         pa.add(geeksButton, BorderLayout.SOUTH);
 
-        // add a new JButton with name "Layout" and it is
-        // lie left of the container
-        pa.add(new JButton("Layout"), BorderLayout.EAST);
+        // add a new JButton with name "Layout" on EAST (left) side
+        JButton layoutButton = new JButton("Layout");
+        layoutButton.addActionListener(e -> layoutButtonClicked(e));
+        pa.add(layoutButton, BorderLayout.EAST);
 
         // add a new JButton with name "Border" and it is
         // lie right of the container
@@ -61,6 +62,11 @@ public class BorderLayoutDemo extends JFrame
 
         // Function to set visible status of JFrame.
         setVisible(true);
+    }
+
+    private void layoutButtonClicked(ActionEvent e)
+    {
+        OutputUtils.displayMessage("Layout button", "Layout button Clicked");
     }
 
     private void geeksClicked(ActionEvent e)
