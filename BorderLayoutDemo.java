@@ -74,13 +74,13 @@ public class BorderLayoutDemo extends JFrame
     {
         JPanel pnl = new JPanel();
 
-        GridLayout layout = new GridLayout(MAX_CARDS/4, MAX_CARDS/ 4);
+        GridLayout layout = new GridLayout(MAX_CARDS / 4, MAX_CARDS / 4);
         layout.setVgap(10);
         layout.setHgap(10);
 
         pnl.setLayout(layout);
         for (int i = 0; i < MAX_CARDS; i++) {
-            JButton b = new JButton("Card " + i);
+            JButton b = new JButton("");
             cards.add(b);
             b.addActionListener(e -> cardClicked(e));
             pnl.add(b);
@@ -91,12 +91,12 @@ public class BorderLayoutDemo extends JFrame
 
     private void cardClicked(ActionEvent e)
     {
-        if(e.getSource() instanceof JButton)
-        {
-            JButton b = (JButton)e.getSource();
-            String title = String.format("Card button %s", b.getText());
-            String msg = String.format("Card button %s was clicked", b.getText());;
-            OutputUtils.displayMessage(msg, title);
+        if (e.getSource() instanceof JButton) {
+            JButton b = (JButton) e.getSource();
+            String title = CardChooser.getRandomCard();
+            b.setText(title);
+            String msg = String.format("Card button %s was clicked", b.getText());
+            //OutputUtils.displayMessage(msg, title);
         }
     }
 
