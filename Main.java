@@ -4,7 +4,7 @@ public class Main
 {
     public static void main(String[] args)
     {
-        String title = String.format("Java Color Chooser Demo using java version %s", getJavaVersion());
+        String title = String.format("Java Border Layout Demo using java version %s", getJavaVersion());
         System.out.println(title);
         Dimension scaledSize = SwingScreenUtilities.getScaledSize(.4, 10);
         // Schedule a job for the event-dispatching thread:
