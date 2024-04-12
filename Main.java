@@ -10,9 +10,7 @@ public class Main
         // Schedule a job for the event-dispatching thread:
         // creating and showing this application's GUI.
         GUI gui = new GUI(scaledSize, title);
-        javax.swing.SwingUtilities.invokeLater(
-                gui
-        );
+        javax.swing.SwingUtilities.invokeLater(gui);
     }
 
     private static String getJavaVersion()
