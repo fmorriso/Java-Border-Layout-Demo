@@ -90,7 +90,8 @@ public class BorderLayoutDemo extends JFrame
 
         for (int i = 0; i < controller.getMaxCards(); i++)
         {
-            JButton b = new JButton("");
+            //JButton b = new JButton("");
+            CardButton b = new CardButton("", new Card(""), i);
             cards.add(b);
             b.addActionListener(e -> cardClicked(e));
             pnl.add(b);
@@ -101,12 +102,13 @@ public class BorderLayoutDemo extends JFrame
 
     private void cardClicked(ActionEvent e)
     {
-        if (e.getSource() instanceof JButton)
+        if (e.getSource() instanceof CardButton)
         {
-            JButton b = (JButton) e.getSource();
-            String msg = String.format("Card button %s was clicked", b.getText());
-            OutputUtils.displayMessage(msg, title);
-
+            CardButton b = (CardButton) e.getSource();
+            //String msg = String.format("Card button %s was clicked", b.getText());
+            //OutputUtils.displayMessage(msg, title);
+            String text = controller.getButtonSelection(b);
+            b.setText(text);
         }
     }
 

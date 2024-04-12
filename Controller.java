@@ -27,4 +27,10 @@ public class Controller
     {
         return this.round.getSelections();
     }
+
+    public String getButtonSelection(CardButton b)
+    {
+        int idx = b.getIndex();;
+        return this.getCurrentCards().get(idx).getText();
+    }
 }
