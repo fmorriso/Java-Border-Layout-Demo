@@ -6,12 +6,11 @@ public class Main
     {
         String title = String.format("Java Border Layout Demo using java version %s", getJavaVersion());
         System.out.println(title);
-        Dimension scaledSize = SwingScreenUtilities.getScaledSize(.5, 10);
-        // Schedule a job for the event-dispatching thread:
-        // creating and showing this application's GUI.
+        Dimension scaledSize = SwingScreenUtilities.getScaledSize(.333, 10);
+
         Controller controller = new Controller();
-        GUI gui = new GUI(scaledSize, title, controller);
-        javax.swing.SwingUtilities.invokeLater(gui);
+        controller.createAndShowGUI(scaledSize, title);
+
     }
 
     private static String getJavaVersion()

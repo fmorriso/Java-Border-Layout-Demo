@@ -92,7 +92,7 @@ public class BorderLayoutDemo extends JFrame
         for (int i = 0; i < controller.getMaxCards(); i++)
         {
             CardButton b = new CardButton("", new Card(""), i);
-            // disable all match buttons until start new round has happened
+            // disable all match buttons until "start new round" has happened
             b.setEnabled(false);
             cards.add(b);
             b.addActionListener(e -> cardButtonClicked(e));
@@ -114,7 +114,7 @@ public class BorderLayoutDemo extends JFrame
             b.setRevealed(true);
 
             controller.incrementNumberOfCardsRevealed();
-            if(controller.getCurrentCardsReveals() >= controller.getMaxCardsToReveal()  )
+            if(controller.getNumberOfCardsRevealed() >= controller.getMaxCardsToReveal()  )
             {
                 controller.disableUnrevealedButtons(this.cards);
             }
@@ -162,6 +162,12 @@ public class BorderLayoutDemo extends JFrame
     private void sayWelcome()
     {
         OutputUtils.displayMessage("Welcome!", "Welcome button Clicked");
+    }
+
+    private void clearSelections()
+    {
+        // TODO clear the selections and set the button text to blank
+        this.controller.clearSelections(this.cards);
     }
 }
 

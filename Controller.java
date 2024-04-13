@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.util.ArrayList;
 
 public class Controller
@@ -59,13 +60,24 @@ public class Controller
         this.round.incrementRevealedCount();
     }
 
-    public int getCurrentCardsReveals()
+    public int getNumberOfCardsRevealed()
     {
-        return this.round.getNumCardsRevealed();
+        return this.round.getNumberOfCardsRevealed();
     }
 
     public void disableUnrevealedButtons(ArrayList<CardButton> buttons)
     {
         this.round.disableUnrevealedButtons(buttons);
+    }
+
+    public void clearSelections(ArrayList<CardButton> buttonList)
+    {
+        this.round.clearSelections(buttonList);
+    }
+
+    public void createAndShowGUI(Dimension scaledSize, String title)
+    {
+        GUI gui = new GUI(scaledSize, title, this);
+        javax.swing.SwingUtilities.invokeLater(gui);
     }
 }

@@ -121,7 +121,7 @@ public class Round
         this.numRevealed++;
     }
 
-    public int getNumCardsRevealed()
+    public int getNumberOfCardsRevealed()
     {
         return this.numRevealed;
     }
@@ -135,6 +135,18 @@ public class Round
             {
                 button.setEnabled(false);
             }
+        }
+    }
+
+    public void clearSelections(ArrayList<CardButton> buttonList)
+    {
+        // clear the selections so that the buttons are also cleared
+        for (int i = 0; i < buttonList.size(); i++)
+        {
+            CardButton button = buttonList.get(i);
+            button.setRevealed(false);
+            button.setEnabled(false);
+            button.setText("");
         }
     }
 }
