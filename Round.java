@@ -6,8 +6,8 @@ public class Round
     private int maxTimesUsed;
     private int numRevealed;
 
-    private ArrayList<Card> selections;
-    private ArrayList<Card> uniqueCards;
+    private ArrayList<CardPayload> selections;
+    private ArrayList<CardPayload> uniqueCardPayloads;
 
     private Round()
     {/* prevent uninitialized instances*/ }
@@ -18,22 +18,22 @@ public class Round
         this.maxTimesUsed = maxTimesUsed;
         this.numRevealed = 0;
 
-        selections = new ArrayList<Card>(this.totalCards);
-        uniqueCards = new ArrayList<Card>();
+        selections = new ArrayList<CardPayload>(this.totalCards);
+        uniqueCardPayloads = new ArrayList<CardPayload>();
 
         ArrayList<String> uniqueCardNames = CardChooser.getUniqueCardNames();
         for(String text: uniqueCardNames)
-            uniqueCards.add(new Card(text));
+            uniqueCardPayloads.add(new CardPayload(text));
 
     }
 
-    public ArrayList<Card> getSelections() { return this.selections; }
+    public ArrayList<CardPayload> getSelections() { return this.selections; }
 
     public void startNewRound()
     {
         this.numRevealed = 0;
         selections.clear();
-        Card card = null;
+        CardPayload cardPayload = null;
         for (int i = 0; i < totalCards; ) {
             // while waiting to populate ...
             boolean foundExisting = false;
@@ -48,17 +48,17 @@ public class Round
                 int idx = lookForExistingSelection(text);
                 int idxUnique = findUniqueCard(text);
                 if (idx == -1) {
-                    card = new Card(text);
-                    selections.add(card);
-                    uniqueCards.get(idxUnique).incrementUsage();
+                    cardPayload = new CardPayload(text);
+                    selections.add(cardPayload);
+                    uniqueCardPayloads.get(idxUnique).incrementUsage();
                     continueSearching = false;
                 } else {
                     // already know about this card, so just make sure we haven't used it too many times
-                    if (uniqueCards.get(idxUnique).getTimesUsed() < maxTimesUsed)
+                    if (uniqueCardPayloads.get(idxUnique).getTimesUsed() < maxTimesUsed)
                     {
-                        uniqueCards.get(idxUnique).incrementUsage();
-                        card = new Card(text);
-                        selections.add(card);
+                        uniqueCardPayloads.get(idxUnique).incrementUsage();
+                        cardPayload = new CardPayload(text);
+                        selections.add(cardPayload);
                         continueSearching = false;
                     }
                 }
@@ -78,25 +78,25 @@ public class Round
     public void displaySelections()
     {
         int i = 0;
-        for(Card card: selections) {
-            System.out.format("index=%d, %s%n", i++, card);
+        for(CardPayload cardPayload : selections) {
+            System.out.format("index=%d, %s%n", i++, cardPayload);
         }
     }
 
     private void displayUniqueCards()
     {
         int i = 0;
-        for(Card card: uniqueCards) {
-            System.out.format("index=%d, %s%n", i++, card);
+        for(CardPayload cardPayload : uniqueCardPayloads) {
+            System.out.format("index=%d, %s%n", i++, cardPayload);
         }
     }
 
     private int findUniqueCard(String text)
     {
         int idx = -1;
-        for (int i = 0; i < uniqueCards.size(); i++)
+        for (int i = 0; i < uniqueCardPayloads.size(); i++)
         {
-            if (uniqueCards.get(i).getText().equals(text))
+            if (uniqueCardPayloads.get(i).getText().equals(text))
             {
                 idx = i;
                 break;
@@ -108,8 +108,8 @@ public class Round
     private int lookForExistingSelection(String text)
     {
         for (int i = 0; i < selections.size(); i++) {
-            Card card = selections.get(i);
-            if (card.getText().equals(text))
+            CardPayload cardPayload = selections.get(i);
+            if (cardPayload.getText().equals(text))
                 return i;
         }
         return -1;

@@ -25,7 +25,7 @@ public class Controller
         return MAX_CARDS;
     }
 
-    public ArrayList<Card> getCurrentCards()
+    public ArrayList<CardPayload> getCurrentCards()
     {
         return this.round.getSelections();
     }
@@ -33,14 +33,14 @@ public class Controller
     public String getAssociatedText(CardButton b)
     {
         int idx = b.getIndex();
-        Card c = this.getCurrentCards().get(idx);
+        CardPayload c = this.getCurrentCards().get(idx);
         return c.getText();
     }
 
     public void enableButton(CardButton b)
     {
         b.setEnabled(true);
-        Card c = this.getCurrentCards().get(b.getIndex());
+        CardPayload c = this.getCurrentCards().get(b.getIndex());
     }
 
     public void enableMatchButtons(ArrayList<CardButton> buttons)

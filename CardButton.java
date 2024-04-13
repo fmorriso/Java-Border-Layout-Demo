@@ -2,26 +2,26 @@ import javax.swing.*;
 
 public class CardButton extends JButton
 {
-    private Card associatedCard;
+    private CardPayload associatedCardPayload;
     private int index;
     private boolean revealed;
 
-    public CardButton(String text, Card associatedCard, int index)
+    public CardButton(String text, CardPayload associatedCardPayload, int index)
     {
         super(text);
-        this.associatedCard = associatedCard;
+        this.associatedCardPayload = associatedCardPayload;
         this.index = index;
         this.revealed = false;
     }
 
-    public Card getAssociatedCard()
+    public CardPayload getAssociatedCard()
     {
-        return this.associatedCard;
+        return this.associatedCardPayload;
     }
 
-    public void setAssociatedCard(Card associatedCard)
+    public void setAssociatedCard(CardPayload associatedCardPayload)
     {
-        this.associatedCard = associatedCard;
+        this.associatedCardPayload = associatedCardPayload;
     }
 
     public int getIndex() { return this.index;}

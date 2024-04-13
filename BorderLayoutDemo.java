@@ -17,6 +17,8 @@ public class BorderLayoutDemo extends JFrame
     private JPanel buttonsPanel;
     private JButton checkForMatchButton;
     private JButton resetButton;
+    private JButton startRoundButton;
+    private JButton exitButton;
 
     public BorderLayoutDemo(Dimension scaledSize, String title, Controller controller)
     {
@@ -43,9 +45,9 @@ public class BorderLayoutDemo extends JFrame
         pa.add(resetButton, BorderLayout.NORTH);
 
         // Geeks button goes on bottom
-        JButton geeksButton = new JButton("Geeks");
-        geeksButton.addActionListener(e -> geeksClicked(e));
-        pa.add(geeksButton, BorderLayout.SOUTH);
+        exitButton = new JButton("Exit");
+        exitButton.addActionListener(e -> exitProgramButtonClicked(e));
+        pa.add(exitButton, BorderLayout.SOUTH);
 
         // add a new JButton with name "Layout" on EAST (left) side
         checkForMatchButton = new JButton("Check For Match");
@@ -54,7 +56,7 @@ public class BorderLayoutDemo extends JFrame
 
         // add a new JButton with name "Border" and it is
         // lie right of the container
-        JButton startRoundButton = new JButton("Start Round");
+        startRoundButton = new JButton("Start Round");
         startRoundButton.addActionListener(e -> startRoundButtonClicked(e));
         pa.add(startRoundButton, BorderLayout.WEST);
 
@@ -85,7 +87,17 @@ public class BorderLayoutDemo extends JFrame
     private void startRoundButtonClicked(ActionEvent e)
     {
         this.controller.startNewRound();
-        this.controller.enableMatchButtons(this.cards);
+
+        //this.controller.enableMatchButtons(this.cards);
+        for(Component component: this.buttonsPanel.getComponents())
+        {
+            if (component instanceof CardButton)
+            {
+                CardButton button = (CardButton) component;
+                button.setEnabled(true);
+                button.setRevealed(false);
+            }
+        }
     }
 
     private JPanel createMatchButtons(JPanel pa)
@@ -100,7 +112,7 @@ public class BorderLayoutDemo extends JFrame
 
         for (int i = 0; i < controller.getMaxCards(); i++)
         {
-            CardButton b = new CardButton("", new Card(""), i);
+            CardButton b = new CardButton("", new CardPayload(""), i);
             // disable all match buttons until "start new round" has happened
             b.setEnabled(false);
             cards.add(b);
@@ -137,12 +149,9 @@ public class BorderLayoutDemo extends JFrame
         OutputUtils.displayMessage("Add logic to check for match", "Check for match button Clicked");
     }
 
-    private void geeksClicked(ActionEvent e)
+    private void exitProgramButtonClicked(ActionEvent e)
     {
-        if (e.getSource() instanceof JButton) {
-            JButton btn = (JButton) e.getSource();
-            changeColor(btn);
-        }
+        System.exit(0);
     }
 
     private void changeColor(JButton btn)

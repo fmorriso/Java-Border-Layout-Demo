@@ -1,4 +1,4 @@
-public class Card
+public class CardPayload
 {
 
     private String text;
@@ -7,8 +7,8 @@ public class Card
     private int timesUsed;
     public int getTimesUsed() { return timesUsed; }
 
-    private Card() {/* prevent uninitialized instances */}
-    public Card(String text)
+    private CardPayload() {/* prevent uninitialized instances */}
+    public CardPayload(String text)
     {
         this.text = text;
         this.timesUsed = 0;
