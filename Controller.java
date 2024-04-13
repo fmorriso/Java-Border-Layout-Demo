@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -70,9 +71,17 @@ public class Controller
         this.round.disableUnrevealedButtons(buttons);
     }
 
-    public void clearSelections(ArrayList<CardButton> buttonList)
+    public void clearSelections(JPanel buttonsPanel)
     {
-        this.round.clearSelections(buttonList);
+        // clear the selections and set the button text to blank
+        for(Component c : buttonsPanel.getComponents())
+        {
+            if(c instanceof CardButton)
+            {
+                CardButton b = (CardButton) c;
+                b.setText("");
+            }
+        }
     }
 
     public void createAndShowGUI(Dimension scaledSize, String title)

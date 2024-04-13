@@ -10,7 +10,6 @@ public class Main
 
         Controller controller = new Controller();
         controller.createAndShowGUI(scaledSize, title);
-
     }
 
     private static String getJavaVersion()

@@ -14,6 +14,10 @@ public class BorderLayoutDemo extends JFrame
 
     private ArrayList<CardButton> cards;
 
+    private JPanel buttonsPanel;
+    private JButton checkForMatchButton;
+    private JButton resetButton;
+
     public BorderLayoutDemo(Dimension scaledSize, String title, Controller controller)
     {
         this.scaledSize = scaledSize;
@@ -34,9 +38,9 @@ public class BorderLayoutDemo extends JFrame
         pa.setLayout(new BorderLayout(10, 10));
 
         // add a new JButton with name "welcome" to the top (North) part of the border
-        JButton welcomeButton = new JButton("Welcome");
-        welcomeButton.addActionListener(e -> sayWelcome());
-        pa.add(welcomeButton, BorderLayout.NORTH);
+        resetButton = new JButton("Reset");
+        resetButton.addActionListener(e -> resetButtonClicked(e));
+        pa.add(resetButton, BorderLayout.NORTH);
 
         // Geeks button goes on bottom
         JButton geeksButton = new JButton("Geeks");
@@ -44,9 +48,9 @@ public class BorderLayoutDemo extends JFrame
         pa.add(geeksButton, BorderLayout.SOUTH);
 
         // add a new JButton with name "Layout" on EAST (left) side
-        JButton layoutButton = new JButton("Layout");
-        layoutButton.addActionListener(e -> layoutButtonClicked(e));
-        pa.add(layoutButton, BorderLayout.EAST);
+        checkForMatchButton = new JButton("Check For Match");
+        checkForMatchButton.addActionListener(e -> checkForMatchButtonClicked(e));
+        pa.add(checkForMatchButton, BorderLayout.EAST);
 
         // add a new JButton with name "Border" and it is
         // lie right of the container
@@ -55,8 +59,8 @@ public class BorderLayoutDemo extends JFrame
         pa.add(startRoundButton, BorderLayout.WEST);
 
         // put match buttons in the center
-        JPanel centerPanel = createMatchButtons(pa);
-        pa.add(centerPanel, BorderLayout.CENTER);
+        this.buttonsPanel = createMatchButtons(pa);
+        pa.add(buttonsPanel, BorderLayout.CENTER);
         
 
         // add the pa object which refer to the Jpanel
@@ -71,6 +75,11 @@ public class BorderLayoutDemo extends JFrame
 
         // Function to set visible status of JFrame.
         setVisible(true);
+    }
+
+    private void resetButtonClicked(ActionEvent e)
+    {
+        clearSelections();
     }
 
     private void startRoundButtonClicked(ActionEvent e)
@@ -123,9 +132,9 @@ public class BorderLayoutDemo extends JFrame
         }
     }
 
-    private void layoutButtonClicked(ActionEvent e)
+    private void checkForMatchButtonClicked(ActionEvent e)
     {
-        OutputUtils.displayMessage("Layout button", "Layout button Clicked");
+        OutputUtils.displayMessage("Add logic to check for match", "Check for match button Clicked");
     }
 
     private void geeksClicked(ActionEvent e)
@@ -159,15 +168,9 @@ public class BorderLayoutDemo extends JFrame
         }
     }
 
-    private void sayWelcome()
-    {
-        OutputUtils.displayMessage("Welcome!", "Welcome button Clicked");
-    }
-
     private void clearSelections()
     {
-        // TODO clear the selections and set the button text to blank
-        this.controller.clearSelections(this.cards);
+        this.controller.clearSelections(buttonsPanel);
     }
 }
 
