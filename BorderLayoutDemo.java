@@ -10,17 +10,18 @@ public class BorderLayoutDemo extends JFrame
 {
     private Dimension scaledSize;
     private String title;
-    private Controller controller;
+    private GameController controller;
 
     private ArrayList<CardButton> cards;
 
+    private JPanel mainPanel;
     private JPanel buttonsPanel;
     private JButton checkForMatchButton;
     private JButton resetButton;
     private JButton startRoundButton;
     private JButton exitButton;
 
-    public BorderLayoutDemo(Dimension scaledSize, String title, Controller controller)
+    public BorderLayoutDemo(Dimension scaledSize, String title, GameController controller)
     {
         this.scaledSize = scaledSize;
         this.title = title;
@@ -33,40 +34,39 @@ public class BorderLayoutDemo extends JFrame
         this.setLocationRelativeTo(null);
 
         // Creating Object of Jpanel class
-        JPanel pa = new JPanel();
-
+        mainPanel = new JPanel();
 
         // set the layout
-        pa.setLayout(new BorderLayout(10, 10));
+        mainPanel.setLayout(new BorderLayout(10, 10));
 
         // add a new JButton with name "welcome" to the top (North) part of the border
         resetButton = new JButton("Reset");
         resetButton.addActionListener(e -> resetButtonClicked(e));
-        pa.add(resetButton, BorderLayout.NORTH);
+        mainPanel.add(resetButton, BorderLayout.NORTH);
 
         // Geeks button goes on bottom
         exitButton = new JButton("Exit");
         exitButton.addActionListener(e -> exitProgramButtonClicked(e));
-        pa.add(exitButton, BorderLayout.SOUTH);
+        mainPanel.add(exitButton, BorderLayout.SOUTH);
 
         // add a new JButton with name "Layout" on EAST (left) side
         checkForMatchButton = new JButton("Check For Match");
         checkForMatchButton.addActionListener(e -> checkForMatchButtonClicked(e));
-        pa.add(checkForMatchButton, BorderLayout.EAST);
+        mainPanel.add(checkForMatchButton, BorderLayout.EAST);
 
         // add a new JButton with name "Border" and it is
         // lie right of the container
         startRoundButton = new JButton("Start Round");
         startRoundButton.addActionListener(e -> startRoundButtonClicked(e));
-        pa.add(startRoundButton, BorderLayout.WEST);
+        mainPanel.add(startRoundButton, BorderLayout.WEST);
 
         // put match buttons in the center
-        this.buttonsPanel = createMatchButtons(pa);
-        pa.add(buttonsPanel, BorderLayout.CENTER);
+        this.buttonsPanel = createMatchButtons(mainPanel);
+        mainPanel.add(buttonsPanel, BorderLayout.CENTER);
         
 
         // add the pa object which refer to the Jpanel
-        add(pa);
+        add(mainPanel);
 
         // Function to close the operation of JFrame.
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

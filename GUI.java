@@ -1,13 +1,12 @@
-import javax.swing.*;
 import java.awt.*;
 
 public class GUI implements Runnable
 {
     private Dimension scaledSize;
     private String title;
-    private Controller controller;
+    private GameController controller;
 
-    public GUI(Dimension scaledSize, String title, Controller controller)
+    public GUI(Dimension scaledSize, String title, GameController controller)
     {
         this.scaledSize = scaledSize;
         this.title = title;

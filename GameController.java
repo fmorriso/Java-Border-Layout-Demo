@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class Controller
+public class GameController
 {
     private static final int MAX_CARDS = 16;
     private static final int MAX_TIMES_REUSE = 2;
@@ -10,7 +10,7 @@ public class Controller
 
     private Round round;
 
-    public Controller()
+    public GameController()
     {
         this.round = new Round(MAX_CARDS , MAX_TIMES_REUSE);
     }

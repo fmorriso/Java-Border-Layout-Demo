@@ -10,7 +10,7 @@ public class CardChooser
     public static String getRandomCard()
     {
         final int MIN = 0;
-        final int MAX = cards.size() - 1;
+        int MAX = cards.size() - 1;
         final int RANGE = MAX - MIN + 1;
         int n = (int)(Math.random() * RANGE) + MIN;
         return cards.get(n);

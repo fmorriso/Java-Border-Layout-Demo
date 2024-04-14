@@ -8,7 +8,7 @@ public class Main
         System.out.println(title);
         Dimension scaledSize = SwingScreenUtilities.getScaledSize(.333, 10);
 
-        Controller controller = new Controller();
+        GameController controller = new GameController();
         controller.createAndShowGUI(scaledSize, title);
     }
 
