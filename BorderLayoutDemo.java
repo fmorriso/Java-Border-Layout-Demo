@@ -39,28 +39,27 @@ public class BorderLayoutDemo extends JFrame
         // set the layout
         mainPanel.setLayout(new BorderLayout(10, 10));
 
-        // add a new JButton with name "welcome" to the top (North) part of the border
+        // add a new JButton that will reset the game
         resetButton = new JButton("Reset");
         resetButton.addActionListener(e -> resetButtonClicked(e));
         mainPanel.add(resetButton, BorderLayout.NORTH);
 
-        // Geeks button goes on bottom
+        // exit button goes on bottom
         exitButton = new JButton("Exit");
         exitButton.addActionListener(e -> exitProgramButtonClicked(e));
         mainPanel.add(exitButton, BorderLayout.SOUTH);
 
-        // add a new JButton with name "Layout" on EAST (left) side
+        // add a new JButton with name "Check for Match" on EAST (left) side
         checkForMatchButton = new JButton("Check For Match");
         checkForMatchButton.addActionListener(e -> checkForMatchButtonClicked(e));
         mainPanel.add(checkForMatchButton, BorderLayout.EAST);
 
-        // add a new JButton with name "Border" and it is
-        // lie right of the container
+        // add a new JButton with name "Start Round"
         startRoundButton = new JButton("Start Round");
         startRoundButton.addActionListener(e -> startRoundButtonClicked(e));
         mainPanel.add(startRoundButton, BorderLayout.WEST);
 
-        // put match buttons in the center
+        // put match buttons in the center buttons panel
         this.buttonsPanel = createMatchButtons(mainPanel);
         mainPanel.add(buttonsPanel, BorderLayout.CENTER);
         
