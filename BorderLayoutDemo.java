@@ -16,6 +16,8 @@ public class BorderLayoutDemo extends JFrame
 
     private JPanel mainPanel;
     private JPanel centralPanel;
+    private JPanel gameControlButtonsPanel;
+
     private JButton checkForMatchButton;
     private JButton resetButton;
     private JButton startRoundButton;
@@ -39,30 +41,13 @@ public class BorderLayoutDemo extends JFrame
         // set the layout
         mainPanel.setLayout(new BorderLayout(10, 10));
 
-        // add a new JButton that will reset the game
-        resetButton = new JButton("Reset");
-        resetButton.addActionListener(e -> resetButtonClicked(e));
-        mainPanel.add(resetButton, BorderLayout.NORTH);
-
-        // exit button goes on bottom
-        exitButton = new JButton("Exit");
-        exitButton.addActionListener(e -> exitProgramButtonClicked(e));
-        mainPanel.add(exitButton, BorderLayout.SOUTH);
-
-        // add a new JButton with name "Check for Match" on EAST (left) side
-        checkForMatchButton = new JButton("Check For Match");
-        checkForMatchButton.addActionListener(e -> checkForMatchButtonClicked(e));
-        mainPanel.add(checkForMatchButton, BorderLayout.EAST);
-
-        // add a new JButton with name "Start Round"
-        startRoundButton = new JButton("Start Round");
-        startRoundButton.addActionListener(e -> startRoundButtonClicked(e));
-        mainPanel.add(startRoundButton, BorderLayout.WEST);
-
         // put match buttons in the center buttons panel
         this.centralPanel = createMatchButtons(mainPanel);
         mainPanel.add(centralPanel, BorderLayout.CENTER);
-        
+
+        // create a penel to hold all the game control buttons
+        this.gameControlButtonsPanel = generateControlButtonsPanel();
+        mainPanel.add(gameControlButtonsPanel, BorderLayout.SOUTH);
 
         // add the pa object which refer to the Jpanel
         add(mainPanel);
@@ -72,6 +57,37 @@ public class BorderLayoutDemo extends JFrame
 
         // Function to set visible status of JFrame.
         setVisible(true);
+    }
+
+    private JPanel generateControlButtonsPanel()
+    {
+        JPanel pnl = new JPanel();
+        GridLayout layout = new GridLayout(1, 0);
+        layout.setVgap(10);
+        layout.setHgap(10);
+        pnl.setLayout(layout);
+
+        // add a new JButton with name "Start Round"
+        startRoundButton = new JButton("Start Round");
+        startRoundButton.addActionListener(e -> startRoundButtonClicked(e));
+        pnl.add(startRoundButton);
+
+        // add a new JButton with name "Check for Match"
+        checkForMatchButton = new JButton("Check For Match");
+        checkForMatchButton.addActionListener(e -> checkForMatchButtonClicked(e));
+        pnl.add(checkForMatchButton);
+
+        // add a new JButton that will reset the game
+        resetButton = new JButton("Reset");
+        resetButton.addActionListener(e -> resetButtonClicked(e));
+        pnl.add(resetButton);
+
+        // exit button goes on bottom
+        exitButton = new JButton("Exit");
+        exitButton.addActionListener(e -> exitProgramButtonClicked(e));
+        pnl.add(exitButton);
+
+        return pnl;
     }
 
     private void resetButtonClicked(ActionEvent e)
