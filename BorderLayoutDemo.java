@@ -15,7 +15,7 @@ public class BorderLayoutDemo extends JFrame
     private ArrayList<CardButton> cards;
 
     private JPanel mainPanel;
-    private JPanel buttonsPanel;
+    private JPanel centralPanel;
     private JButton checkForMatchButton;
     private JButton resetButton;
     private JButton startRoundButton;
@@ -60,8 +60,8 @@ public class BorderLayoutDemo extends JFrame
         mainPanel.add(startRoundButton, BorderLayout.WEST);
 
         // put match buttons in the center buttons panel
-        this.buttonsPanel = createMatchButtons(mainPanel);
-        mainPanel.add(buttonsPanel, BorderLayout.CENTER);
+        this.centralPanel = createMatchButtons(mainPanel);
+        mainPanel.add(centralPanel, BorderLayout.CENTER);
         
 
         // add the pa object which refer to the Jpanel
@@ -86,7 +86,7 @@ public class BorderLayoutDemo extends JFrame
         this.controller.startNewRound();
 
         //this.controller.enableMatchButtons(this.cards);
-        for(Component component: this.buttonsPanel.getComponents())
+        for(Component component: this.centralPanel.getComponents())
         {
             if (component instanceof CardButton)
             {
@@ -156,7 +156,7 @@ public class BorderLayoutDemo extends JFrame
     private void clearSelections()
     {
         System.out.println("DEBUG: clearSelections");
-        this.controller.clearSelections(buttonsPanel);
+        this.controller.clearSelections(centralPanel);
     }
 
 }
