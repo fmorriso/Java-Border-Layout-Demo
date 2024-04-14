@@ -70,10 +70,6 @@ public class BorderLayoutDemo extends JFrame
         // Function to close the operation of JFrame.
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // Function to set size of JFrame.
-        //setSize(300, 300);
-        setSize(scaledSize);
-
         // Function to set visible status of JFrame.
         setVisible(true);
     }
