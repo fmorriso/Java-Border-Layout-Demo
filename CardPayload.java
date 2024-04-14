@@ -19,6 +19,11 @@ public class CardPayload
         this.timesUsed += 1;
     }
 
+    public void resetUsage()
+    {
+        this.timesUsed = 0;
+    }
+
     @Override
     public String toString()
     {

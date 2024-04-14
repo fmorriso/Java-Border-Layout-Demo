@@ -76,11 +76,13 @@ public class BorderLayoutDemo extends JFrame
 
     private void resetButtonClicked(ActionEvent e)
     {
+        System.out.println("DEBUG: resetButtonClicked");
         clearSelections();
     }
 
     private void startRoundButtonClicked(ActionEvent e)
     {
+        System.out.println("DEBUG: startRoundButtonClicked");
         this.controller.startNewRound();
 
         //this.controller.enableMatchButtons(this.cards);
@@ -120,6 +122,7 @@ public class BorderLayoutDemo extends JFrame
 
     private void cardButtonClicked(ActionEvent e)
     {
+        System.out.println("DEBUG: cardButtonClicked");
         if (e.getSource() instanceof CardButton)
         {
             CardButton b = (CardButton) e.getSource();
@@ -149,33 +152,12 @@ public class BorderLayoutDemo extends JFrame
         System.exit(0);
     }
 
-    private void changeColor(JButton btn)
-    {
-        String[] colorChoices = {"red", "green", "blue"};
-        String choice = InputUtils.getSingleChoice("Choose Color", "Which color?", colorChoices);
-        switch (choice.toLowerCase()) {
-            case "red":
-                btn.setBackground(Color.RED);
-                btn.setForeground(Color.WHITE);
-                break;
-            case "green":
-                btn.setBackground(Color.GREEN);
-                btn.setForeground(Color.YELLOW);
-                break;
-            case "blue":
-                btn.setBackground(Color.BLUE);
-                btn.setForeground(Color.PINK);
-                break;
-
-            default:
-                throw new IllegalStateException("Unexpected value: " + choice.toLowerCase());
-        }
-    }
-
     private void clearSelections()
     {
+        System.out.println("DEBUG: clearSelections");
         this.controller.clearSelections(buttonsPanel);
     }
+
 }
 
 

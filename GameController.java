@@ -17,6 +17,7 @@ public class GameController
 
     public void startNewRound()
     {
+        System.out.println("DEBUG: GameController.startNewRound");
         this.round.startNewRound();
     }
 
@@ -32,6 +33,7 @@ public class GameController
 
     public String getAssociatedText(CardButton b)
     {
+        System.out.format("%n%s%n",getMethodName(1));
         int idx = b.getIndex();
         CardPayload c = this.getCurrentCards().get(idx);
         return c.getText();
@@ -39,12 +41,14 @@ public class GameController
 
     public void enableButton(CardButton b)
     {
+        System.out.format("%n%s%n",getMethodName(1));
         b.setEnabled(true);
         CardPayload c = this.getCurrentCards().get(b.getIndex());
     }
 
     public void enableMatchButtons(ArrayList<CardButton> buttons)
     {
+        System.out.format("%n%s%n",getMethodName(1));
         for(CardButton button : buttons)
         {
             button.setEnabled(true);
@@ -53,6 +57,7 @@ public class GameController
 
     public static int getMaxCardsToReveal()
     {
+        System.out.format("%n%s%n",getMethodName(1));
         return MAX_CARDS_TO_REVEAL;
     }
 
@@ -63,16 +68,19 @@ public class GameController
 
     public int getNumberOfCardsRevealed()
     {
+        System.out.format("%n%s%n",getMethodName(1));
         return this.round.getNumberOfCardsRevealed();
     }
 
     public void disableUnrevealedButtons(ArrayList<CardButton> buttons)
     {
+        System.out.format("%n%s%n",getMethodName(1));
         this.round.disableUnrevealedButtons(buttons);
     }
 
     public void clearSelections(JPanel buttonsPanel)
     {
+        System.out.format("%n%s%n",getMethodName(1));
         // clear the selections and set the button text to blank
         for(Component c : buttonsPanel.getComponents())
         {
@@ -89,4 +97,15 @@ public class GameController
         GUI gui = new GUI(scaledSize, title, this);
         javax.swing.SwingUtilities.invokeLater(gui);
     }
+
+    public static String getMethodName(final int depth)
+    {
+        final StackTraceElement[] ste = Thread.currentThread().getStackTrace();
+
+        //System. out.println(ste[ste.length-depth].getClassName()+"#"+ste[ste.length-depth].getMethodName());
+        // return ste[ste.length - depth].getMethodName();  //Wrong, fails for depth = 0
+        return ste[ste.length - 1 - depth].getMethodName(); //Thank you Tom Tresansky
+    }
+
+
 }

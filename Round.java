@@ -31,8 +31,10 @@ public class Round
 
     public void startNewRound()
     {
+        System.out.println("DEBUG: Entering Round.startNewRound");
         this.numRevealed = 0;
         selections.clear();
+        resetUniquePayloadUsage();
         CardPayload cardPayload = null;
         for (int i = 0; i < totalCards; ) {
             // while waiting to populate ...
@@ -64,14 +66,25 @@ public class Round
                 }
 
             }
-            //System.out.format("DEBUG: Finished creating selection %d%n", i);
+            System.out.format("DEBUG: Finished creating selection %d%n", i);
+            if(i == 7)
+            {
+                System.out.println("DEBUG: trying to find infinite loop condition when i is 7");
+            }
             //displaySelections();
             i++;
         }
-        //System.out.println(selections);
         displaySelections();
-        //displayUniqueCards();
+        displayUniqueCards();
+        System.out.println("DEBUG: leaving Round.startNewRound");
+    }
 
+    private void resetUniquePayloadUsage()
+    {
+        for (int i = 0; i < this.uniqueCardPayloads.size(); i++)
+        {
+            this.uniqueCardPayloads.get(i).resetUsage();
+        }
     }
 
 
