@@ -93,6 +93,7 @@ public class BorderLayoutDemo extends JFrame
                 CardButton button = (CardButton) component;
                 button.setEnabled(true);
                 button.setRevealed(false);
+                button.setText("");
             }
         }
     }
