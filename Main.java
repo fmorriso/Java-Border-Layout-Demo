@@ -6,7 +6,7 @@ public class Main
     {
         String title = String.format("Java Border Layout Demo using java version %s", getJavaVersion());
         System.out.println(title);
-        Dimension scaledSize = SwingScreenUtilities.getScaledSize(.333, 10);
+        Dimension scaledSize = SwingScreenUtilities.getScaledSize(0.4, 10);
 
         GameController controller = new GameController();
         controller.createAndShowGUI(scaledSize, title);
