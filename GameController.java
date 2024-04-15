@@ -41,7 +41,7 @@ public class GameController
     public void enableButton(CardButton b)
     {
         b.setEnabled(true);
-        CardPayload c = this.getCurrentCards().get(b.getIndex());
+        // CardPayload c = this.getCurrentCards().get(b.getIndex());
     }
 
     public void enableMatchButtons(ArrayList<CardButton> buttons)

@@ -31,8 +31,8 @@ public class BorderLayoutDemo extends JFrame
 
         cards = new ArrayList<CardButton>();
 
-        this.setTitle(title);
-        this.setSize(scaledSize);
+        this.setTitle(this.title);
+        this.setSize(this.scaledSize);
         this.setLocationRelativeTo(null);
 
         // Creating Object of Jpanel class

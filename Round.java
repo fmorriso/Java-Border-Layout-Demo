@@ -9,8 +9,7 @@ public class Round
     private ArrayList<CardPayload> selections;
     private ArrayList<CardPayload> uniqueCardPayloads;
 
-    private Round()
-    {/* prevent uninitialized instances*/ }
+    private Round() {/* prevent uninitialized instances*/ }
 
     public Round(int totalCards, int maxTimesUsed)
     {
@@ -38,8 +37,8 @@ public class Round
         CardPayload cardPayload = null;
         for (int i = 0; i < totalCards; ) {
             // while waiting to populate ...
-            boolean foundExisting = false;
-            boolean searchingList = true;
+            // boolean foundExisting = false;
+            // boolean searchingList = true;
             String text = "";
 
             boolean continueSearching = true;
@@ -66,17 +65,13 @@ public class Round
                 }
 
             }
-            System.out.format("DEBUG: Finished creating selection %d%n", i);
-            if(i == 7)
-            {
-                System.out.println("DEBUG: trying to find infinite loop condition when i is 7");
-            }
-            //displaySelections();
+            // System.out.format("DEBUG: Finished creating selection %d%n", i);
+            // displaySelections();
             i++;
         }
         displaySelections();
         displayUniqueCards();
-        System.out.println("DEBUG: leaving Round.startNewRound");
+        // System.out.println("DEBUG: leaving Round.startNewRound");
     }
 
     private void resetUniquePayloadUsage()
