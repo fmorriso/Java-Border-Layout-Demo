@@ -1,8 +1,4 @@
-import javax.swing.Icon;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
-import javax.swing.ListSelectionModel;
-import javax.swing.UIManager;
+import javax.swing.*;
 
 public class InputUtils
 {
@@ -18,8 +14,8 @@ public class InputUtils
     public static String getSingleChoice(String title, String question, String[] choices)
     {
         String choice = "";
-        // force user to choose something by ignoreing clicks on the Cancel button
-        while(choice.equals(""))
+        // force user to choose something by ignoring clicks on the Cancel button
+        while(choice.isEmpty())
         {
             JList<String> selections = new JList<String>(choices);
             selections.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -29,6 +25,36 @@ public class InputUtils
             if(response != null) choice = (String)response;
         }
         return choice;
+    }
+
+    /**
+     * Display a question with multiple Enum choices and return the single choice made by the user.
+     *
+     * @param title - The title for the pop-up dialog.
+     * @param question - The question to ask the user just above the list of available choices.
+     * @param enumClass - The class name of the Enum
+     * @return - The single Enum choice of the user
+     *
+     */
+    public static <T extends Enum<T>> T getSingleEnumChoice(String title, String question, Class<T> enumClass) {
+        T[] enumConstants = enumClass.getEnumConstants();
+        String[] choices = new String[enumConstants.length];
+        for (int i = 0; i < enumConstants.length; i++) {
+            choices[i] = enumConstants[i].name();
+        }
+
+        String selected = (String) JOptionPane.showInputDialog(
+                null,
+                question,
+                title,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                choices,
+                choices[0] // default selection
+        );
+        if (selected == null) return null;
+
+        return Enum.valueOf(enumClass, selected);
     }
 
     /** Prompts the user to enter a whole number and returns it.
@@ -44,11 +70,11 @@ public class InputUtils
         int n = Integer.MIN_VALUE;
         while(n == Integer.MIN_VALUE)
         {
-            String resp = JOptionPane.showInputDialog(null, title, msg, msgType);
+            String resp = JOptionPane.showInputDialog(null, msg, title, msgType);
             try {
                 n = Integer.parseInt(resp);
             } catch (Exception e) {
-                n = 0;
+                n = Integer.MIN_VALUE;
             }
         }
         return n;
@@ -67,14 +93,100 @@ public class InputUtils
         double n = Double.MIN_VALUE;
         while(n == Double.MIN_VALUE)
         {
-            String resp = JOptionPane.showInputDialog(null, title, msg, msgType);
+            String resp = JOptionPane.showInputDialog(null, msg, title, msgType);
             try {
                 n = Double.parseDouble(resp);
             } catch (Exception e) {
-                n = 0;
+                n = Double.MIN_VALUE;
             }
         }
         return n;
     }
 
+
+    /** Prompts the user to enter a decimal number within a specified range and returns it.
+     * @param title - the title to use when presenting the dialog box to the user.
+     * @param min - the minimum value in the range of allowable inputs.
+     * @param max - the maximum value in the range of allowable inputs.
+     * @return - the whole number the user typed in.
+     */
+    public static int getWholeNumberInRange(String title, int min, int max)
+    {
+        final int msgType = JOptionPane.INFORMATION_MESSAGE;
+        int n = Integer.MIN_VALUE;
+        String msg = String.format("Enter a whole number between %d and %d", min, max);
+        while(n < min || n > max)
+        {
+            String resp = JOptionPane.showInputDialog(null, msg, title, msgType);
+            try {
+                n = Integer.parseInt(resp);
+            } catch (Exception e) {
+                n = Integer.MIN_VALUE;
+            }
+        }
+
+
+        return n;
+    }
+
+    /** Prompts the user to enter a decimal number within a specified range and returns it.
+     * @param title - the title to use when presenting the dialog box to the user.
+     * @param min - the minimum value in the range of allowable inputs.
+     * @param max - the maximum value in the range of allowable inputs.
+     * @return - the decimal number the user typed in.
+     */
+    public static double getDecimalNumberInRange(String title, double min, double max)
+    {
+        final int msgType = JOptionPane.INFORMATION_MESSAGE;
+        double n = Double.MIN_VALUE;
+        String msg = String.format("Enter a decimal number between %.1f and %.1f", min, max);
+        while(n < min || n > max)
+        {
+            String resp = JOptionPane.showInputDialog(null, msg, title, msgType);
+            try {
+                n = Double.parseDouble(resp);
+            } catch (Exception e) {
+                n = Double.MIN_VALUE;
+            }
+        }
+
+
+        return n;
+    }
+
+
+    /** Displays the specified message in a popup window with the specified title
+     * @param msg - the message to display
+     * @param title - the title of the message dialog
+     */
+    public static void displayMessage(String msg, String title)
+    {
+        JOptionPane.showMessageDialog(null, msg, title, JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public static boolean askYesNoQuestion(String title, String question, JComponent parent) {
+
+        int result = JOptionPane.showConfirmDialog(
+                parent,
+                question,
+                title,
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE
+        );
+
+        return result == JOptionPane.YES_OPTION;
+    }
+
+    public static boolean askYesNoQuestion(String title, String question) {
+        return askYesNoQuestion(title, question, null);
+    }
+
+    public static String getAnswer(String title, String question) {
+        return (String) JOptionPane.showInputDialog(
+                null,
+                question,
+                title,
+                JOptionPane.QUESTION_MESSAGE
+        );
+    }
 }

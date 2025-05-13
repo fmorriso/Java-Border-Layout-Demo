@@ -69,7 +69,7 @@ public class BorderLayoutDemo extends JFrame
 
         // add a new JButton with name "Start Round"
         startRoundButton = new JButton("Start Round");
-        startRoundButton.addActionListener(e -> startRoundButtonClicked(e));
+        startRoundButton.addActionListener((ActionEvent e) -> startRoundButtonClicked(e));
         pnl.add(startRoundButton);
 
         // add a new JButton with name "Check for Match"

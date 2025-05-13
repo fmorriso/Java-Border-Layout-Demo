@@ -3,8 +3,8 @@ import java.awt.*;
 public class GUI implements Runnable
 {
     private Dimension scaledSize;
-    private String title;
-    private GameController controller;
+    private final String title;
+    private final GameController controller;
 
     public GUI(Dimension scaledSize, String title, GameController controller)
     {

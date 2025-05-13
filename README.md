@@ -5,16 +5,17 @@ Example of a JFrame using BorderLayout
 
 | Tool     |  Version |
 |:---------|---------:|
-| Java     | 24.0.0.0 |
+| Java     | 24.0.1.0 |
 | JUnit    |    5.9.1 |
-| IntelliJ | 2024.3.5 |
-| VSCode   |   1.98.0 |
+| IntelliJ | 2025.1.1 |
+| VSCode   |  1.100.0 |
 
 ## Change History
 
-| Date       | Description      |
-|:-----------|:-----------------|
-| 2025-03-18 | Initial creation |
+| Date       | Description       |
+|:-----------|:------------------|
+| 2025-03-18 | Initial creation  |
+| 2025-05-13 | update InputUtils |
 
 ## References
 * [Java AWT BorderLayout Class Demo](https://www.geeksforgeeks.org/java-awt-borderlayout-class/)
